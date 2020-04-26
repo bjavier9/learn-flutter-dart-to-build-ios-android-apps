@@ -13,6 +13,18 @@ class Myapp extends StatefulWidget {
 }
 
 class _MyappState extends State<Myapp> {
+ int _indexArray=0;
+  void _changeFunction(int tamano){
+    setState(() {      
+      if(_indexArray < tamano){
+      _indexArray++;
+    }else{
+      _indexArray=0;
+    }
+    });
+    
+      
+  }
 
 final data = const[{
     "isActive": false,
@@ -52,7 +64,7 @@ final data = const[{
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar:BarApp(),      
-      body: App(),
+      body: App(person: Person.fromJsonMap(data[_indexArray]), handlerFunction:(()=>_changeFunction(data.length-1)),),
       ),
     );
   }
