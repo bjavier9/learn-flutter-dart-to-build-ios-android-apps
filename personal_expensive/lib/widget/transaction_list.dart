@@ -14,7 +14,19 @@ final List<Transaction> transactions;
 
     return Container(
       height: 300,
-      child: ListView.builder(
+      child:transactions.isEmpty? Column(
+        children: <Widget>[
+          Text('No transactions added yet!',
+          style: Theme.of(context).textTheme.title,
+          ),
+          SizedBox(height: 10,),
+          Container(
+            height: 200,
+            child: Image.asset('assets/img/box.png',
+            fit: BoxFit.cover,
+            ))
+        ],
+      ):ListView.builder(
         itemCount: transactions.length,
         itemBuilder: (ctx, index){
             return Card(
@@ -46,8 +58,7 @@ final List<Transaction> transactions;
                       children: <Widget>[
                         Text(
                           transactions[index].title,
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
+                          style:Theme.of(context).textTheme.title),
                         
                         Text(
                           DateFormat('yyyy/MM/dd').format(transactions[index].date),
