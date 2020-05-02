@@ -10,6 +10,7 @@ class ChartBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (ctx, constrains){
+      
       return  Column(
       children: <Widget>[
         Container(
@@ -20,7 +21,7 @@ class ChartBar extends StatelessWidget {
         ),
         Container(
           height: constrains.maxHeight*0.6,
-          width: 15,
+          width: 10,
           child: Stack(
             children: <Widget>[
               Container(

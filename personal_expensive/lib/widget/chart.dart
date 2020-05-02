@@ -42,6 +42,12 @@ double get maxSpending{
       elevation: 6,
       margin: EdgeInsets.all(20),
       child: Container(
+         decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.0),
+              bottomLeft: Radius.circular(20.0)),
+         
+        ),
         padding: EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
