@@ -50,7 +50,7 @@ final Function deleteTrans;
                 
               onPressed:()=>deleteTrans(transactions[index].id),
                icon:Icon(Icons.delete), 
-                label: Text('Delete'),
+                label: Text('CLEAN'),
                 textColor: Theme.of(context).errorColor,
                 // color: Theme.of(context).errorColor,
                 ): IconButton(
