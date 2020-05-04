@@ -13,7 +13,10 @@ final Function addNewTrx;
 NewTransaction({this.addNewTrx});
 
   @override
-  _NewTransactionState createState() => _NewTransactionState();
+  _NewTransactionState createState(){
+    print('CreateState NewTransactions widget');
+   return _NewTransactionState();    
+    }
 }
 
 class _NewTransactionState extends State<NewTransaction> {
@@ -22,6 +25,31 @@ final _titleTransaction = TextEditingController();
 final _amaunTransaction = TextEditingController();
 DateTime _selectedDate;
 
+_NewTransactionState(){
+  print('Contructor Newtransaction state');
+}
+
+@override
+  void initState() {
+    // TODO: implement initState
+    print('Init state');
+    super.initState();
+
+  }
+
+  @override
+  void didUpdateWidget(NewTransaction oldWidget) {
+    // TODO: implement didUpdateWidget
+    print('didupdate widget');
+    super.didUpdateWidget(oldWidget);
+  }
+
+@override
+  void dispose() {
+    print('dipose');
+    // TODO: implement dispose
+    super.dispose();
+  }
 void _submitData(){
   if(_amaunTransaction.text.isEmpty){
     return;
@@ -81,7 +109,7 @@ void _presentDataPicker(BuildContext context){
                         //   onChanged: (value){
                         //   _titleTransaction=value;
                         // },
-                         decoration: InputDecoration(
+                         decoration: const InputDecoration(
                         labelText:'Title'
                       ),),
                       TextField(
@@ -91,7 +119,7 @@ void _presentDataPicker(BuildContext context){
                         onSubmitted:(_)=>_submitData() ,
                         keyboardType: TextInputType.number,
                         controller: _amaunTransaction,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                         labelText:'Amount'
                       ),),
 
