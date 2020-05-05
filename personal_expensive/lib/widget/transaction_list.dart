@@ -11,13 +11,13 @@ final Function deleteTrans;
   Widget build(BuildContext context) {
 
 
-    return ListView.builder(
-      itemCount: transactions.length,
-      itemBuilder: (ctx, index){
-         return TransactionItem(transaction: transactions[index], deleteTrans: deleteTrans);
-      },
-      // children: transactions.map(
-      //   (transaction){ }).toList()
+    return ListView(
+      children: transactions
+          .map((tx)=>TransactionItem(
+            key: ValueKey(tx.id),
+              transaction: tx,
+              deleteTrans: deleteTrans,
+      )).toList()
     );
   }
 }
