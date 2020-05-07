@@ -9,7 +9,7 @@ final String imageUrl;
 final int duration;
 final Complexity complexity;
 final Affordability affordability;
-final Function removeItem;
+// final Function removeItem;
 
   const MealItem({
  @required this.title, 
@@ -18,7 +18,7 @@ final Function removeItem;
  @required this.complexity, 
  @required this.affordability, 
  @required this.id,
- @required this.removeItem
+//  @required this.removeItem
  });
  String get complexityText{
    switch(complexity){
@@ -57,7 +57,7 @@ void selectMeal(BuildContext context){
     arguments: id
     ).then((res){
       if(res!=null){
-        removeItem(res);
+        // removeItem(res);
       }
       
     });

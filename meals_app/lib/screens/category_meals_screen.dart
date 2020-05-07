@@ -64,7 +64,7 @@ bool _loadedInitData = false;
                 affordability:  displayedMeals[index].affordability,
                 complexity:  displayedMeals[index].complexity,
                 imageUrl:  displayedMeals[index].imageUrl,
-                removeItem: _removeMeal,
+                // removeItem: _removeMeal,
               );
           },
           itemCount: displayedMeals.length 
