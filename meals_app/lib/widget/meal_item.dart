@@ -9,6 +9,7 @@ final String imageUrl;
 final int duration;
 final Complexity complexity;
 final Affordability affordability;
+final Function removeItem;
 
   const MealItem({
  @required this.title, 
@@ -16,7 +17,8 @@ final Affordability affordability;
  @required this.duration, 
  @required this.complexity, 
  @required this.affordability, 
- @required this.id
+ @required this.id,
+ @required this.removeItem
  });
  String get complexityText{
    switch(complexity){
@@ -53,7 +55,12 @@ void selectMeal(BuildContext context){
   Navigator.of(context).pushNamed(
     MealDetailScreen.routeName, 
     arguments: id
-    );
+    ).then((res){
+      if(res!=null){
+        removeItem(res);
+      }
+      
+    });
 }
   @override
   Widget build(BuildContext context) {
