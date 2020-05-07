@@ -405,4 +405,32 @@ const DUMMY_MEALS = const [
     isVegetarian: true,
     isLactoseFree: true,
   ),
+  Meal(
+    id: 'm11',
+    categories: [
+      'c6',
+    ],
+    title: 'Pescado a la chumerri',
+    affordability: Affordability.Pricey,
+    complexity: Complexity.Hard,
+    imageUrl: 'https://d1kxxrc2vqy8oa.cloudfront.net/wp-content/uploads/2019/06/18120742/RFB-0706-4-pargofrito.jpg',
+    duration: 40,
+    ingredients: [
+      '1 ½ kg de Pargo limpio y sin escamas',
+      'Zumo de 1 limón',
+      '3 cucharaditas de sal',
+      '½ taza de harina de trigo',
+      '¾ taza de aceite de freír'
+    ],
+    steps: [
+      'Colocar el pescado en un envase con la sal y el zumo de limón y dejar marinar durante ½ hora.',
+      'Sacar las ruedas de la marinada y escurrir con papel absorbente.',
+      'Pasar el pescado por la harina y freír en un sartén con aceite caliente.',
+      'Freír durante 10 minutos por cada lado o hasta ver ambos lados dorados.'
+    ],
+    isGlutenFree: true,
+    isVegan: true,
+    isVegetarian: true,
+    isLactoseFree: true,
+  )
 ];
