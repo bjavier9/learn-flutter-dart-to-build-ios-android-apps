@@ -5,6 +5,7 @@ import 'package:shop_app/screens/cart_screen.dart';
 import 'package:shop_app/widget/badge.dart';
 import '../providers/products.dart';
 import '../widget/product_grid.dart';
+import '../widget/app_drawer.dart';
 
 enum FilterOpcion{
 Favorites,
@@ -65,6 +66,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
             
         ],
       ),
+      drawer: AppDrawer(),
       body: ProductsGrid(_showOnlyFvaorites),
     );
   }
