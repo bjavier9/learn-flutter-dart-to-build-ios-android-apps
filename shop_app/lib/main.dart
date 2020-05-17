@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_app/screens/products_overview_screen.dart';
 import './providers/auth.dart';
 import './screens/edit_product_screen.dart';
 import './providers/orders.dart';
@@ -31,21 +32,23 @@ class MyApp extends StatelessWidget {
           create: (ctx) => Orders(),
         )
       ],
-      child: MaterialApp(
-        title: 'MyShop',
-        theme: ThemeData(
-            primaryColor: Colors.purple,
-            accentColor: Colors.deepOrange,
-            fontFamily: 'Lato'),
-        home: AuthScreen(),
-        routes: {
-          ProductDetailScreen.routedNamed: (ctx) => ProductDetailScreen(),
-          CartScreen.routeName: (ctx) => CartScreen(),
-          OrdersScreen.routeName: (ctx) => OrdersScreen(),
-          UserProductsScreen.routeName: (ctx) => UserProductsScreen(),
-          EditProductScreen.routeNane: (ctx) => EditProductScreen()
-        },
-      ),
+      child: Consumer<Auth>(
+          builder: (ctx, auth, _) => MaterialApp(
+                title: 'MyShop',
+                theme: ThemeData(
+                    primaryColor: Colors.purple,
+                    accentColor: Colors.deepOrange,
+                    fontFamily: 'Lato'),
+                home: auth.isAuth ? ProductOverviewScreen() : AuthScreen(),
+                routes: {
+                  ProductDetailScreen.routedNamed: (ctx) =>
+                      ProductDetailScreen(),
+                  CartScreen.routeName: (ctx) => CartScreen(),
+                  OrdersScreen.routeName: (ctx) => OrdersScreen(),
+                  UserProductsScreen.routeName: (ctx) => UserProductsScreen(),
+                  EditProductScreen.routeNane: (ctx) => EditProductScreen()
+                },
+              )),
     );
   }
 }
