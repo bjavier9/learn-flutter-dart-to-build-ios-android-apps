@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth.dart';
 import '../models/http_exception.dart';
+import 'products_overview_screen.dart';
 
 enum AuthMode { Signup, Login }
 
@@ -131,14 +132,18 @@ class _AuthCardState extends State<AuthCard> {
     try {
       if (_authMode == AuthMode.Login) {
         await Provider.of<Auth>(context, listen: false)
-            .Login(_authData['email'], _authData['password']);
+            .login(_authData['email'], _authData['password']);
         // Log user in
       } else {
         // Sign user up
         await Provider.of<Auth>(context, listen: false)
             .signUp(_authData['email'], _authData['password']);
       }
-      Navigator.of(context).pushReplacementNamed("/products-overview");
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ProductOverviewScreen()),
+      );
+      ;
     } on HttpException catch (e) {
       var errorMessage = "Authenticate failed";
       if (e.toString().contains("EMAIL_EXISTS")) {
@@ -154,6 +159,7 @@ class _AuthCardState extends State<AuthCard> {
       }
       _showErrorDilog(errorMessage);
     } catch (e) {
+      print(e);
       const errorMessage =
           "Could not authenticate you. Please try again later.";
       _showErrorDilog(errorMessage);

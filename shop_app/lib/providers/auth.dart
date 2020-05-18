@@ -7,14 +7,20 @@ class Auth with ChangeNotifier {
   String _token;
   DateTime _expireDate;
   String _userId;
+
   bool get isAuth {
     return token != null;
+  }
+
+  String get userId {
+    return _userId;
   }
 
   String get token {
     if (_expireDate != null &&
         _expireDate.isAfter(DateTime.now()) &&
         _token != null) {
+      print(_token);
       return _token;
     }
     return null;
@@ -33,7 +39,10 @@ class Auth with ChangeNotifier {
           }));
       // print(json.decode(response.body));
       final responseData = json.decode(response.body);
+      print(responseData);
+      // print(responseData);
       if (responseData['error'] != null) {
+        print('error');
         throw HttpException(responseData['error']['message']);
       }
       _token = responseData['idToken'];
@@ -50,7 +59,7 @@ class Auth with ChangeNotifier {
     return _authenticate(email, password, "signupNewUser");
   }
 
-  Future<void> Login(String email, String password) async {
+  Future<void> login(String email, String password) async {
     return _authenticate(email, password, "verifyPassword");
   }
 }
