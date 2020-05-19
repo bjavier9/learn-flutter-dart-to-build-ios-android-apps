@@ -25,16 +25,16 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProxyProvider<Auth, Products>(
           update: (ctx, auth, previousItems) => Products(auth.token,
-              previousItems == null ? [] : previousItems.items, auth.userId),
-          create: (_) => Products('', [], ''),
+              auth.userId, previousItems == null ? [] : previousItems.items),
+          create: (_) => Products('', '', []),
         ),
         ChangeNotifierProvider(
           create: (ctx) => Cart(),
         ),
         ChangeNotifierProxyProvider<Auth, Orders>(
-          update: (ctx, auth, previousItems) => Orders(auth.token,
-              previousItems == null ? [] : previousItems.orders, auth.userId),
-          create: (_) => Orders('', [], ""),
+          update: (ctx, auth, previousItems) => Orders(auth.token, auth.userId,
+              previousItems == null ? [] : previousItems.orders),
+          create: (_) => Orders('', "", []),
         )
       ],
       child: Consumer<Auth>(
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
                   CartScreen.routeName: (ctx) => CartScreen(),
                   OrdersScreen.routeName: (ctx) => OrdersScreen(),
                   UserProductsScreen.routeName: (ctx) => UserProductsScreen(),
-                  EditProductScreen.routeNane: (ctx) => EditProductScreen()
+                  EditProductScreen.routeName: (ctx) => EditProductScreen()
                 },
               )),
     );
