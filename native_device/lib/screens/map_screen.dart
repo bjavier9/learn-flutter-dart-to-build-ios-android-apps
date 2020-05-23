@@ -21,6 +21,13 @@ class _MapScreenState extends State<MapScreen> {
   final mapctrl = new MapController();
   List<LatLng> tappedPoints = [];
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    tappedPoints.add(widget.initialLocation.getLatLng());
+  }
+
+  @override
   Widget build(BuildContext context) {
     var _marker = tappedPoints.map((latlng) {
       return Marker(
