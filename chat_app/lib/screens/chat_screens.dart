@@ -1,3 +1,5 @@
+import '../widget/chat/new_message.dart';
+
 import '../widget/chat/messages.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -45,6 +47,7 @@ class ChatScreen extends StatelessWidget {
             Expanded(
               child: Messages(),
             ),
+            NewMessage()
           ],
         ),
       ),
