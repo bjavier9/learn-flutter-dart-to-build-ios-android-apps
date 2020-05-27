@@ -11,6 +11,12 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>we need access to let you pick an image.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>we need access to let you pick an image.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>we need access to let you pick an image.</string>
 	<string>chat_app</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>

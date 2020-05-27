@@ -1,13 +1,39 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class MessageBubble extends StatelessWidget {
   final String message;
   final bool isMe;
+  final String userName;
+  final String userImage;
   final Key key;
 
-  const MessageBubble(this.message, this.isMe, {this.key});
+  const MessageBubble(
+    this.message,
+    this.isMe,
+    this.userName,
+    this.userImage, {
+    this.key,
+  });
   @override
   Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        buildRow(context),
+        Positioned(
+          top: 0,
+          right: isMe ? null : 120,
+          left: isMe ? 120 : null,
+          child: CircleAvatar(
+            backgroundImage: NetworkImage(userImage),
+          ),
+        ),
+      ],
+      overflow: Overflow.visible, //para ver los que sobrepasem los pixeles
+    );
+  }
+
+  Row buildRow(BuildContext context) {
     return Row(
       mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
@@ -22,13 +48,24 @@ class MessageBubble extends StatelessWidget {
           ),
           width: 140,
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-          margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-          child: Text(
-            message,
-            style: TextStyle(
-                color: isMe
-                    ? Colors.black
-                    : Theme.of(context).accentTextTheme.title.color),
+          margin: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+          child: Column(
+            crossAxisAlignment:
+                isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            children: [
+              Text(
+                userName,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                message,
+                style: TextStyle(
+                    color: isMe
+                        ? Colors.black
+                        : Theme.of(context).accentTextTheme.title.color),
+                textAlign: isMe ? TextAlign.end : TextAlign.start,
+              ),
+            ],
           ),
         ),
       ],
