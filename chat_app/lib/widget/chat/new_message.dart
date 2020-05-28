@@ -1,6 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class NewMessage extends StatefulWidget {
   @override
@@ -8,20 +8,21 @@ class NewMessage extends StatefulWidget {
 }
 
 class _NewMessageState extends State<NewMessage> {
-  var _enteredMessage = '';
   final _controller = new TextEditingController();
+  var _enteredMessage = '';
+
   void _sendMessage() async {
     FocusScope.of(context).unfocus();
-    final user = await FirebaseAuth.instance.currentUser(); //esconde el teclado
-    final userData =
-        await Firestore.instance.collection('users').document(user.uid).get();
+    final user = await FirebaseAuth.instance.currentUser();
+    final userData = await Firestore.instance.collection('users').document(user.uid).get();
     Firestore.instance.collection('chat').add({
       'text': _enteredMessage,
+      'createdAt': Timestamp.now(),
       'userId': user.uid,
-      'createdAT': Timestamp.now(),
       'username': userData['username'],
       'userImage': userData['image_url']
     });
+    _controller.clear();
   }
 
   @override
@@ -30,11 +31,14 @@ class _NewMessageState extends State<NewMessage> {
       margin: EdgeInsets.only(top: 8),
       padding: EdgeInsets.all(8),
       child: Row(
-        children: [
+        children: <Widget>[
           Expanded(
             child: TextField(
               controller: _controller,
-              decoration: InputDecoration(labelText: 'send a message..'),
+              textCapitalization: TextCapitalization.sentences,
+              autocorrect: true,
+              enableSuggestions: true,
+              decoration: InputDecoration(labelText: 'Send a message...'),
               onChanged: (value) {
                 setState(() {
                   _enteredMessage = value;
@@ -44,7 +48,9 @@ class _NewMessageState extends State<NewMessage> {
           ),
           IconButton(
             color: Theme.of(context).primaryColor,
-            icon: Icon(Icons.send),
+            icon: Icon(
+              Icons.send,
+            ),
             onPressed: _enteredMessage.trim().isEmpty ? null : _sendMessage,
           )
         ],
